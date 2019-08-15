@@ -1,4 +1,5 @@
 data/all_pos.csv
 data/all_neg.csv
 data/all.csv
-data/npy
+data/npy/X.npy
+data/npy/y.npy

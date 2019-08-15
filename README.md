@@ -1,7 +1,9 @@
 # Smart Wall
 
 ## Usage
-Put all_pos.csv and all_neg.csv files into data/ directory.
+* Put all.csv file into data/ directory.
+* Run `$ python data_preprocessing.py` to get X.npy and y.npy under ./data/npy/ directory.
+
 
 ## Tools
 There are some useful scripts in tools directory.

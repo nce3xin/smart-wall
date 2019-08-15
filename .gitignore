@@ -3,3 +3,5 @@ data/all_neg.csv
 data/all.csv
 data/npy/X.npy
 data/npy/y.npy
+
+__pycache__

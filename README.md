@@ -1,8 +1,8 @@
 # Smart Wall
 
 ## Usage
-* Put all.csv file into data/ directory.
-* Run `$ python data_preprocessing.py` to get X.npy and y.npy under ./data/npy/ directory.
+* Put all.csv file into data/directory.
+* Run `$ python data_preprocessing.py` to get X.npy and y.npy under ./data/npy/directory.
 
 
 ## Tools

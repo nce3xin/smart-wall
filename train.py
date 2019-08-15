@@ -9,6 +9,13 @@ if __name__=='__main__':
     y_file_name='y.npy'
 
     X_train,X_test,y_train,y_test=data_split(root,X_file_name,y_file_name)
+
+    # 0,1,-1 are invalid values. Replace them with 0.
+    X_train=np.where(X_train==1,0,X_train)
+    X_train=np.where(X_train==-1,0,X_train)
+    X_test=np.where(X_test==1,0,X_test)
+    X_test=np.where(X_test==-1,0,X_test)
+
     X_train=np.expand_dims(X_train,axis=3)
     X_train=X_train.reshape((X_train.shape[0],80,50,1))
     X_test=X_test.reshape((X_test.shape[0],80,50,1))

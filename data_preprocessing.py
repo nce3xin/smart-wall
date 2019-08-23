@@ -49,8 +49,9 @@ def _check(X): # check 0,-1,1 exist or not
     return True
 
 if __name__=='__main__':
-    root='./data/'
-    data_name='all.csv'
+    root='./data/test_single_csv_per_group/'
+    group_id='group1'
+    data_name=group_id+'.csv'
     df=pd.read_csv(root + data_name, index_col=0)
 
     img_raw=df['block_data']
@@ -68,9 +69,13 @@ if __name__=='__main__':
     check=_check(X)
     print(check)
 
-    pd.DataFrame(X.reshape((X.shape[0],4000))).to_csv('data/X.csv',header=None,index=None)
-
+    #pd.DataFrame(X.reshape((X.shape[0],4000))).to_csv('data/X.csv',header=None,index=None)
+    '''
     if not os.path.isfile('data/npy/X.npy'):
         np.save('data/npy/X.npy',X)
     if not os.path.isfile('data/npy/y.npy'):
         np.save('data/npy/y.npy',y)
+    '''
+
+    np.save('data/test_npy/' + group_id + '/X.npy', X)
+    np.save('data/test_npy/' + group_id + '/y.npy', y)

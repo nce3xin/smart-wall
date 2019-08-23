@@ -12,10 +12,14 @@ def _list_files(root,dir):
     return filenames
 
 if __name__=='__main__':
-    root='.'
+    root='./data/test_csv'
+    dir='group6'
+    '''
     pos_dir='CASPos20190601_csv'
     neg_dir='CASNeg20190601_csv'
     pos_csv_filenames=_list_files(root,pos_dir)
     neg_csv_filenames=_list_files(root,neg_dir)
-    concat_csv(root+'/'+pos_dir,pos_csv_filenames,'all_pos')
-    concat_csv(root+'/'+neg_dir,neg_csv_filenames,'all_neg')
+    '''
+    csv_filenames=_list_files(root,dir)
+    concat_csv(root+'/'+dir,csv_filenames,dir)
+    #concat_csv(root+'/'+neg_dir,neg_csv_filenames,'all_neg')

@@ -10,6 +10,11 @@ if __name__=='__main__':
 
     X_train_k_fold,X_test_k_fold,y_train_k_fold,y_test_k_fold = data_split(root,X_file_name,y_file_name)
 
+    X_group1=np.load('./data/test_npy/group1' + '/' + X_file_name)
+    y_group1=np.load('./data/test_npy/group1' + '/' + y_file_name)
+    X_group1=np.expand_dims(X_group1,axis=3)
+    y_group1=keras.utils.to_categorical(y_group1,num_classes=2)
+
     for i in range(len(X_train_k_fold)):
         X_train=X_train_k_fold[i]
         X_test=X_test_k_fold[i]
@@ -35,6 +40,11 @@ if __name__=='__main__':
                 metrics=['accuracy'])
         print('{} fold -----------------------------------------------------'.format(i+1))
         model.fit(X_train,y_train,batch_size=32,epochs=1)
-        score=model.evaluate(X_test,y_test,batch_size=32)
+        #score=model.evaluate(X_test,y_test,batch_size=32)
+        score=model.evaluate(X_group1,y_group1,batch_size=32)
+        #predicted_labels=model.predict(X_group1, batch_size=32)
         
         print(score)
+
+        if i==0:
+            break

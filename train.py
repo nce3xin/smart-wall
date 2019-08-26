@@ -1,5 +1,6 @@
 from data_loader import data_split
 from training_visualization import training_vis
+from keras.utils import plot_model
 import keras
 import numpy as np
 import resnet
@@ -7,6 +8,7 @@ import SVC
 
 if __name__=='__main__':
     model_name='ResNet' # ResNet, SVC
+    imgs_root='imgs/imgs/'
 
     root='./data/npy/'
     X_file_name='X.npy'
@@ -33,6 +35,7 @@ if __name__=='__main__':
 
         if model_name=='ResNet':
             print('model: ResNet------------------------------------------------------')
+
             X_train=np.expand_dims(X_train,axis=3)
             X_test=np.expand_dims(X_test,axis=3)
             '''
@@ -51,18 +54,21 @@ if __name__=='__main__':
             model.compile(loss='categorical_crossentropy',
                     optimizer='adam',
                     metrics=['accuracy'])
-    
-            history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=2)
+
+            plot_model(model, to_file=imgs_root + 'model.pdf')
+
+            history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=1)
             #score=model.evaluate(X_test,y_test,batch_size=32)
             #score=model.evaluate(X_group1,y_group1,batch_size=32)
             #predicted_labels=model.predict(X_group1, batch_size=32)
 
-            training_vis(history)
+            training_vis(history,i+1,imgs_root)
             
             #print(score)
-            
+            '''
             if i==0:
                 break
+            '''
                 
         elif model_name=='SVC':
             print('model: SVC------------------------------------------------------')

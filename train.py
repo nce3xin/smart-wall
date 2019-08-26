@@ -52,14 +52,14 @@ if __name__=='__main__':
                     optimizer='adam',
                     metrics=['accuracy'])
     
-            history=model.fit(X_train,y_train,batch_size=32,epochs=5)
+            history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=2)
             #score=model.evaluate(X_test,y_test,batch_size=32)
-            score=model.evaluate(X_group1,y_group1,batch_size=32)
+            #score=model.evaluate(X_group1,y_group1,batch_size=32)
             #predicted_labels=model.predict(X_group1, batch_size=32)
 
             training_vis(history)
             
-            print(score)
+            #print(score)
             
             if i==0:
                 break

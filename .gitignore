@@ -10,3 +10,5 @@ data/test_single_csv_per_group
 data/test_npy
 
 __pycache__
+
+imgs/training_vis.png

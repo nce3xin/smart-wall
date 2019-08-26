@@ -5,6 +5,9 @@
 * Run `$ python data_preprocessing.py` to get X.npy and y.npy under ./data/npy/directory.
 * Run `$ python train.py | tee ./log.txt` to start training. Tee will redirect training info to both screen and ./log.txt file.
 
+## Images
+- Figures for training visualization is under ./imgs/ directory.
+
 ## Tools
 There are some useful scripts in tools directory.
 * `concat_csv.py` : concat csv files into a single file. 

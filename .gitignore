@@ -13,3 +13,5 @@ __pycache__
 log.txt
 
 imgs/imgs
+
+ckps/weights*

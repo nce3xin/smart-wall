@@ -1,6 +1,7 @@
 from data_loader import data_split
 from training_visualization import training_vis
 from keras.utils import plot_model
+from keras.callbacks import ModelCheckpoint
 import keras
 import numpy as np
 import resnet
@@ -57,7 +58,13 @@ if __name__=='__main__':
 
             plot_model(model, to_file=imgs_root + 'model.pdf')
 
-            history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=1)
+            checkpointer = ModelCheckpoint(filepath='/ckps/weights-{epoch:02d}-{val_acc:.2f}.hdf5',verbose=1, save_best_only=True,period=1)
+
+            history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=200,callbacks=[checkpointer])
+
+            # load the model
+            #model= load_model(filepath)
+
             #score=model.evaluate(X_test,y_test,batch_size=32)
             #score=model.evaluate(X_group1,y_group1,batch_size=32)
             #predicted_labels=model.predict(X_group1, batch_size=32)

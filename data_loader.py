@@ -5,7 +5,9 @@ import numpy as np
 def data_split(root,X_file_name,y_file_name):
     X=np.load(root + '/' + X_file_name)
     y=np.load(root + '/' + y_file_name)
-    skf = StratifiedKFold(n_splits=5)
+    # Randomized CV splitters may return different results for each call of split. 
+    # You can make the results identical by setting random_state to an integer.
+    skf = StratifiedKFold(n_splits=5,shuffle=True,random_state=42)
     X_train_k_fold=[]
     y_train_k_fold=[]
     X_test_k_fold=[]

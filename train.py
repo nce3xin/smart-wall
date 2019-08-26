@@ -58,7 +58,7 @@ if __name__=='__main__':
 
             plot_model(model, to_file=imgs_root + 'model.pdf')
 
-            checkpointer = ModelCheckpoint(filepath='/ckps/weights-{epoch:02d}-{val_acc:.2f}.hdf5',verbose=1, save_best_only=True,period=1)
+            checkpointer = ModelCheckpoint(filepath='./ckps/weights-{epoch:02d}-{val_acc:.2f}.hdf5',verbose=1, save_best_only=True,period=1)
 
             history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=200,callbacks=[checkpointer])
 

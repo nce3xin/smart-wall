@@ -7,7 +7,7 @@
 * Run `$ python train.py | tee ./log.txt` to start training. Tee will redirect training info to both screen and ./log.txt file.
 
 ## Images
-- Figures for training visualization is under ./imgs/imgs directory.
+- Figures for training visualization are under ./imgs/imgs directory.
 
 ## Tools
 There are some useful scripts in tools directory.

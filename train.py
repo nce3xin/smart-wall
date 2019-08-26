@@ -1,4 +1,5 @@
 from data_loader import data_split
+from training_visualization import training_vis
 import keras
 import numpy as np
 import resnet
@@ -51,10 +52,12 @@ if __name__=='__main__':
                     optimizer='adam',
                     metrics=['accuracy'])
     
-            model.fit(X_train,y_train,batch_size=32,epochs=100)
+            history=model.fit(X_train,y_train,batch_size=32,epochs=5)
             #score=model.evaluate(X_test,y_test,batch_size=32)
             score=model.evaluate(X_group1,y_group1,batch_size=32)
             #predicted_labels=model.predict(X_group1, batch_size=32)
+
+            training_vis(history)
             
             print(score)
             

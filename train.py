@@ -8,7 +8,7 @@ import resnet
 import SVC
 
 if __name__=='__main__':
-    model_name='ResNet' # ResNet, SVC
+    model_name='SVC' # ResNet, SVC
     imgs_root='imgs/imgs/'
 
     root='./data/npy/'
@@ -16,12 +16,12 @@ if __name__=='__main__':
     y_file_name='y.npy'
 
     X_train_k_fold,X_test_k_fold,y_train_k_fold,y_test_k_fold = data_split(root,X_file_name,y_file_name)
-    
+    '''
     X_group1=np.load('./data/test_npy/group1' + '/' + X_file_name)
     y_group1=np.load('./data/test_npy/group1' + '/' + y_file_name)
     X_group1=np.expand_dims(X_group1,axis=3)
     y_group1=keras.utils.to_categorical(y_group1,num_classes=2)
-    
+    '''
     for i in range(len(X_train_k_fold)):
         X_train=X_train_k_fold[i]
         X_test=X_test_k_fold[i]

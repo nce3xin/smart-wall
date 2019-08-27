@@ -14,6 +14,10 @@ if __name__=='__main__':
 
     X_group1=np.load('./data/test_npy/group1' + '/' + X_file_name)
     y_group1=np.load('./data/test_npy/group1' + '/' + y_file_name)
+    
+    # convert labels -1 and 1 to 0 and 1
+    y_group1=np.clip(y_group1,0,1)
+
     X_group1=np.expand_dims(X_group1,axis=3)
     y_group1=keras.utils.to_categorical(y_group1,num_classes=2)
 

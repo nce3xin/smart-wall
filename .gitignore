@@ -8,6 +8,8 @@ data/test_csv
 data/test_db
 data/test_single_csv_per_group
 data/test_npy
+data/5-fold-npy
+data/5-fold-npy.zip
 
 __pycache__
 log.txt

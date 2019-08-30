@@ -7,6 +7,10 @@
 * Run `$ python train.py | tee ./log.txt` to start training. Tee will redirect training info to both screen and ./log.txt file.
 * Run `$ python test.py | tee ./test_group1_log.txt` to start testing process on group1~6 data.
 
+## Binary Data Generator
+- Run `$ python npy2mat.py`.
+- Run `binary_converter.m` using MATLAB.
+
 ## Images
 - Figures for training visualization are under ./imgs/imgs directory.
 

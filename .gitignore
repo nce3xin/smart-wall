@@ -17,7 +17,10 @@ log.txt
 
 imgs/imgs
 
-ckps/weights*
-ckps/resnet34
+ckpt/weights*
+ckpt/resnet34
 
 logs/resnet34
+logs/session.log
+
+models/

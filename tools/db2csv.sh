@@ -1,12 +1,12 @@
 #!/bin/bash
-
 #dir=./data/CASPos20190601/
 
-data_group_id=1
+data_group_id=9
 root=./data/test_db/group
 slash=/
+#subdir=CASNeg20190730
 dir=${root}${data_group_id}${slash}
-group_dir=group${data_group_id}
+
 
 for i in `ls ${dir}`
 do

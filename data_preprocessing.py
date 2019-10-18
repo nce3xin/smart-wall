@@ -49,9 +49,11 @@ def _check(X): # check 0,-1,1 exist or not
     return True
 
 if __name__=='__main__':
-    root='./data/test_single_csv_per_group/'
-    group_id='group1'
+    root='./data/test_csv/group10/'
+    group_id='group10'
     data_name=group_id+'.csv'
+    #subdir='CASNeg20190803'
+    #data_name=group_id+'_'+ subdir +'.csv'
     df=pd.read_csv(root + data_name, index_col=0)
 
     img_raw=df['block_data']

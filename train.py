@@ -8,10 +8,10 @@ import resnet
 import SVC
 
 if __name__=='__main__':
-    model_name='SVC' # ResNet, SVC
+    model_name='ResNet' # ResNet, SVC
     imgs_root='imgs/imgs/'
 
-    root='./data/npy/'
+    root='./data/test_npy/group8/'
     X_file_name='X.npy'
     y_file_name='y.npy'
 
@@ -56,9 +56,9 @@ if __name__=='__main__':
                     optimizer='adam',
                     metrics=['accuracy'])
 
-            plot_model(model, to_file=imgs_root + 'model.pdf')
+            #plot_model(model, to_file=imgs_root + 'model.pdf')
 
-            checkpointer = ModelCheckpoint(filepath='./ckps/weights-{epoch:03d}-{val_acc:.3f}.hdf5',verbose=1, save_best_only=True,period=10)
+            checkpointer = ModelCheckpoint(filepath='./ckpt/weights-{epoch:03d}-{val_acc:.3f}.hdf5',verbose=1, save_best_only=True,period=10)
 
             history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=32,epochs=200,callbacks=[checkpointer])
 

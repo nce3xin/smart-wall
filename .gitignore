@@ -19,6 +19,7 @@ imgs/imgs
 
 ckpt/weights*
 ckpt/resnet34
+ckpt/transfer_learning
 
 logs/resnet34
 logs/session.log

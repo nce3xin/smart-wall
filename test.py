@@ -1,37 +1,40 @@
 from keras.models import load_model
 import numpy as np
 import keras
-
-def load_(filepath):
-    model= load_model(filepath)
+import os 
+from sklearn.metrics import confusion_matrix
 
 if __name__=='__main__':
-    #model_path='ckpt/resnet34/1-fold/weights-169-0.993.hdf5'
-    model_path='ckps/weights-169-0.993.hdf5'
+    model_path='ckps/weights-044-0.976.hdf5'
     model=load_model(model_path)
 
-    X_file_name='X.npy'
-    y_file_name='y.npy'
-
-    group_id='group2'
-
-    X_group1=np.load('./data/test_npy/'+group_id + '/' + X_file_name)
-    y_group1=np.load('./data/test_npy/'+group_id + '/' + y_file_name)
+    #model.summary()
     
-    unique_train, counts_train=np.unique(y_group1, return_counts=True)
+    X_file_name='X_test_1_fold.npy'
+    y_file_name='y_test_1_fold.npy'
+
+    X=np.load('data/' + X_file_name)
+    y=np.load('data/' + y_file_name)
+    
+    unique_train, counts_train=np.unique(y, return_counts=True)
     print(np.asarray((unique_train, counts_train)).T)
 
-    # convert labels -1 and 1 to 0 and 1
-    y_group1=np.clip(y_group1,0,1)
-
-    X_group1=np.expand_dims(X_group1,axis=3)
-    print(X_group1.shape)
-    y_group1=keras.utils.to_categorical(y_group1,num_classes=2)
+    y_to_categorical=keras.utils.to_categorical(y,num_classes=2)
     '''
-    score=model.evaluate(X_group1,y_group1,batch_size=32)
-    print(score)
+    score=model.evaluate(X,y_to_categorical,batch_size=128)
+    print('loss & accuracy: {}'.format(score))
     '''
-    y_prob=model.predict(X_group1,batch_size=32)
+    y_prob=model.predict(X,batch_size=128)
+    y_pred = np.argmax(y_prob, axis=1)
+    print('y_true shape: {}'.format(y.shape))
+    print('y_pred shape: {}'.format(y_pred.shape))
     print(y_prob.shape) # (num_samples,2)
     print(y_prob[:5])
-    #np.save('data/test_y_predict_prob/' + group_id + '/y_predict_prob.npy', y_prob)
+
+    cm=confusion_matrix(y,y_pred)
+    print('confusion matrix: {}'.format(cm))
+
+    y_pred_prob_export_path='data/y_predict_prob.npy'
+    if not os.path.exists(y_pred_prob_export_path):
+        np.save(y_pred_prob_export_path, y_prob)
+    

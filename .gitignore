@@ -11,15 +11,20 @@ data/test_npy
 data/5-fold-npy
 data/5-fold-mat
 data/5-fold-npy.zip
+data/6group_csv
+data/all_plus_wind
+data/dirty
+data/wind_data
 
 __pycache__
 log.txt
 
-imgs/imgs
+imgs/acc*
+imgs/loss*
 
-ckpt/weights*
-ckpt/resnet34
-ckpt/transfer_learning
+ckps/resnet34
+ckps/transfer_learning
+ckps/wind
 
 logs/resnet34
 logs/session.log

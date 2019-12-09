@@ -1,8 +1,6 @@
-import  numpy as np
-import pandas as pd
 
-X_pos=pd.read_csv('data/all_pos.csv')
-X_neg=pd.read_csv('data/all_neg.csv')
 
-print(X_pos.shape)
-print(X_neg.shape)
+if __name__=='__main__':
+    a=[1,2,5,4,3]
+    for x in a:
+        print(x)

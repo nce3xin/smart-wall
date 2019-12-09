@@ -4,19 +4,21 @@ import numpy as np
 import pandas as pd
 
 def data_split(root,X_file_name,y_file_name):
-    X=np.load(root + '/' + X_file_name)
-    y=np.load(root + '/' + y_file_name)
+    X=np.load(root + X_file_name)
+    y=np.load(root + y_file_name)
     # Randomized CV splitters may return different results for each call of split. 
     # You can make the results identical by setting random_state to an integer.
     # If shuffle=True and random_state is set, then the result of split is determined. If you re-run the program, the results will not change.
     # If shuffle=False and random_state=None, then the result of split is also determined.
 
     # downsampling
+    '''
     X,y=down_sampling(X,y)
     print('downsampling finished!')
     print(X.shape)
     print(y.shape)
-
+    '''
+    
     skf = StratifiedKFold(n_splits=5,shuffle=True,random_state=42)
     X_train_k_fold=[]
     y_train_k_fold=[]
@@ -36,11 +38,13 @@ def data_split(root,X_file_name,y_file_name):
         y_train=y_train_k_fold[i]
         X_test=X_test_k_fold[i]
         y_test=y_test_k_fold[i]
-        export_root='./data/5-fold-npy/'+str(i+1)+'-fold'
-        np.save(export_root+'/X_train.npy', X_train)
-        np.save(export_root+'/X_test.npy', X_test)
-        np.save(export_root+'/y_train.npy', y_train)
-        np.save(export_root+'/y_test.npy', y_test)
+        export_root='./data/wind_data/'
+        np.save(export_root+'X_wind_train.npy', X_train)
+        np.save(export_root+'X_wind_test.npy', X_test)
+        np.save(export_root+'y_wind_train.npy', y_train)
+        np.save(export_root+'y_wind_test.npy', y_test)
+        if i==0:
+            break
     '''
     #X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,stratify=y)
     return X_train_k_fold,X_test_k_fold,y_train_k_fold,y_test_k_fold
@@ -72,7 +76,7 @@ def down_sampling(X_train,y_train):
     return np.concatenate((pos, neg_downsampling), axis=0), np.concatenate((y_pos,y_neg))
 
 if __name__=='__main__':
-    root='./data/npy/'
+    root='./data/all_plus_wind/'
     X_file_name='X.npy'
     y_file_name='y.npy'
 

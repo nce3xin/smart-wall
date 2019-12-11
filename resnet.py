@@ -232,7 +232,7 @@ class ResnetBuilder(object):
         return model
 
     @staticmethod
-    def build_resnet_others_1(input_shape, num_outputs):
+    def build_resnet_10(input_shape, num_outputs):
         return ResnetBuilder.build(input_shape, num_outputs, basic_block, [1, 1, 1, 1])
 
     @staticmethod

@@ -8,5 +8,5 @@ def plot_confusion_matrix(cm):
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
     plt.title('ResNet-10 confusion matrix')
-    plt.savefig('imgs/resnet_others_1/cm.png',dpi=300)
+    plt.savefig('imgs/resnet10/cm.png',dpi=300)
     print('-----------------confusion matrix figure saved!-------------------')

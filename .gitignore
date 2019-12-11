@@ -22,6 +22,7 @@ log.txt
 imgs/acc*
 imgs/loss*
 
+ckps/resnet10
 ckps/resnet34
 ckps/transfer_learning
 ckps/wind
@@ -29,4 +30,4 @@ ckps/wind
 logs/resnet34
 logs/session.log
 
-models/
+model/

@@ -10,42 +10,73 @@ import os
 
 if __name__=='__main__':
     model_name='ResNet' # ResNet
-    imgs_root='imgs/resnet_others_1/'
+    imgs_root='imgs/resnet12/'
 
     root='data/all_plus_wind/'
     X_file_name='X.npy'
     y_file_name='y.npy'
 
-    X_train_k_fold,X_test_k_fold,y_train_k_fold,y_test_k_fold = data_split(root,X_file_name,y_file_name)
+    #X_train_k_fold,X_test_k_fold,y_train_k_fold,y_test_k_fold = data_split(root,X_file_name,y_file_name)
 
-    for i in range(len(X_train_k_fold)):
+    #for i in range(len(X_train_k_fold)):
+    for i in range(5):
+        '''
         X_train=X_train_k_fold[i]
         X_test=X_test_k_fold[i]
         y_train=y_train_k_fold[i]
         y_test=y_test_k_fold[i]
+        
 
+        
         unique_train, counts_train=np.unique(y_train, return_counts=True)
         print('How many 0 and 1 in y_train: {}'.format(np.asarray((unique_train, counts_train)).T))
 
         unique_test, counts_test=np.unique(y_test, return_counts=True)
         print('How many 0 and 1 in y_test: {}'.format(np.asarray((unique_test, counts_test)).T))
+        '''
         
 
         X_train_export_fn='X_train_1_fold.npy'
+        '''
         if not os.path.exists(root+X_train_export_fn):
             np.save(root+X_train_export_fn,X_train)
+        '''
         
         X_test_export_fn='X_test_1_fold.npy'
+        '''
         if not os.path.exists(root+X_test_export_fn):
             np.save(root+X_test_export_fn,X_test)
+        '''
 
         y_train_export_fn='y_train_1_fold.npy'
+        '''
         if not os.path.exists(root+y_train_export_fn):
             np.save(root+y_train_export_fn,y_train)
+        '''
 
         y_test_export_fn='y_test_1_fold.npy'
+        '''
         if not os.path.exists(root+y_test_export_fn):
             np.save(root+y_test_export_fn,y_test)
+        '''
+        
+
+        # if .npy file exists, read data from file
+        if os.path.exists(root+X_train_export_fn):
+            X_train=np.load(root+X_train_export_fn)
+            print('Read X_train from file.')
+        
+        if os.path.exists(root+X_test_export_fn):
+            X_test=np.load(root+X_test_export_fn)
+            print('Read X_test from file.')
+
+        if os.path.exists(root+y_train_export_fn):
+            y_train=np.load(root+y_train_export_fn)
+            print('Read y_train from file.')
+        
+        if os.path.exists(root+y_test_export_fn):
+            y_test=np.load(root+y_test_export_fn)
+            print('Read y_test from file.')
 
         print('{} fold -----------------------------------------------------'.format(i+1))
 
@@ -60,7 +91,7 @@ if __name__=='__main__':
             img_cols=400
             num_classes=2
             
-            model=resnet.ResnetBuilder.build_resnet_others_1((img_channels,img_rows,img_cols),num_classes)
+            model=resnet.ResnetBuilder.build_resnet_12((img_channels,img_rows,img_cols),num_classes)
             model.compile(loss='categorical_crossentropy',
                     optimizer='adam',
                     metrics=['accuracy'])
@@ -68,7 +99,7 @@ if __name__=='__main__':
             #model.summary()
             #plot_model(model, to_file=imgs_root + 'model.pdf')
 
-            checkpointer = ModelCheckpoint(filepath='./ckps/resnet_others_1/weights-{epoch:03d}-{val_acc:.3f}.hdf5', monitor='val_acc', verbose=1, save_best_only=True, mode='max', period=1)
+            checkpointer = ModelCheckpoint(filepath='./ckps/resnet12/weights-{epoch:03d}-{val_acc:.3f}.hdf5', monitor='val_acc', verbose=1, save_best_only=True, mode='max', period=1)
 
             history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=128,epochs=50,callbacks=[checkpointer])
 

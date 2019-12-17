@@ -21,8 +21,14 @@ log.txt
 
 imgs/acc*
 imgs/loss*
+imgs/resnet12
+imgs/resnet14
+imgs/resnet16
+imgs/resnet18
 
 ckps/resnet10
+ckps/resnet12
+ckps/resnet14
 ckps/resnet34
 ckps/transfer_learning
 ckps/wind

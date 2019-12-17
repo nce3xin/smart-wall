@@ -15,7 +15,7 @@ from sklearn.metrics import roc_auc_score
 
 if __name__=='__main__':
     #model_path='ckps/weights-044-0.976.hdf5'
-    model_path='ckps/resnet10/weights-036-0.977.hdf5'
+    model_path='ckps/resnet18/weights-046-0.977.hdf5'
     model=load_model(model_path)
 
     #model.summary()
@@ -35,6 +35,8 @@ if __name__=='__main__':
     print('loss & accuracy: {}'.format(score))
     '''
 
+    # Attention! If you change the model architecture, you must delete y_prob.npy and y_pred.npy before testing! 
+    '''
     y_prob_export_path='data/all_plus_wind/y_prob.npy'
     if not os.path.exists(y_prob_export_path):
         y_prob=model.predict(X,batch_size=128)
@@ -47,7 +49,11 @@ if __name__=='__main__':
         np.save(y_pred_export_path, y_pred)
     else:
         y_pred=np.load(y_pred_export_path)
-    
+    '''
+
+    y_prob=model.predict(X,batch_size=128)
+    y_pred = np.argmax(y_prob, axis=1)
+
     print('y_true shape: {}'.format(y.shape))
     print('y_pred shape: {}'.format(y_pred.shape))
     #print(y_prob.shape) # (num_samples,2)
@@ -57,12 +63,6 @@ if __name__=='__main__':
     cm=confusion_matrix(y,y_pred)
     print('confusion matrix: {}'.format(cm))
     plot_confusion_matrix(cm)
-    '''
-    y_pred_prob_export_path='data/y_predict_prob.npy'
-    if not os.path.exists(y_pred_prob_export_path):
-        np.save(y_pred_prob_export_path, y_prob)
-    '''
-
 
     # f1 score
     f1=f1_score(y,y_pred)
@@ -77,7 +77,7 @@ if __name__=='__main__':
     print('recall: {}'.format(r))
     
     # auc
-    y_prob=np.load(y_prob_export_path)
+    #y_prob=np.load(y_prob_export_path)
     auc=roc_auc_score(y,y_prob[:,1])
     print('auc: {}'.format(auc))
 

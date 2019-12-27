@@ -10,7 +10,7 @@ import os
 
 if __name__=='__main__':
     model_name='ResNet' # ResNet
-    imgs_root='imgs/resnet_14_bottleneck/'
+    imgs_root='imgs/resnet_17_bottleneck/'
 
     root='data/all_plus_wind/'
     X_file_name='X.npy'
@@ -91,7 +91,7 @@ if __name__=='__main__':
             img_cols=400
             num_classes=2
             
-            model=resnet.ResnetBuilder.build_resnet_14_bottleneck((img_channels,img_rows,img_cols),num_classes)
+            model=resnet.ResnetBuilder.build_resnet_17_bottleneck((img_channels,img_rows,img_cols),num_classes)
             model.compile(loss='categorical_crossentropy',
                     optimizer='adam',
                     metrics=['accuracy'])
@@ -99,7 +99,7 @@ if __name__=='__main__':
             #model.summary()
             #plot_model(model, to_file=imgs_root + 'model.pdf')
 
-            checkpointer = ModelCheckpoint(filepath='./ckps/resnet_14_bottleneck/weights-{epoch:03d}-{val_acc:.3f}.hdf5', monitor='val_acc', verbose=1, save_best_only=True, mode='max', period=1)
+            checkpointer = ModelCheckpoint(filepath='./ckps/resnet_17_bottleneck/weights-{epoch:03d}-{val_acc:.3f}.hdf5', monitor='val_acc', verbose=1, save_best_only=True, mode='max', period=1)
 
             history=model.fit(X_train,y_train,validation_data=(X_test,y_test),batch_size=128,epochs=50,callbacks=[checkpointer])
 

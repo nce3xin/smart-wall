@@ -6,7 +6,7 @@ from sklearn.metrics import confusion_matrix
 from keras.utils import plot_model
 
 if __name__=='__main__':
-    model_path='ckps/resnet_14_bottleneck/weights-041-0.979.hdf5'
+    model_path='ckps/resnet_17_bottleneck/weights-046-0.979.hdf5'
     model=load_model(model_path)
 
     model.summary()

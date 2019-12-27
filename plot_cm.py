@@ -8,6 +8,6 @@ def plot_confusion_matrix(cm):
     sn.heatmap(cm, annot=True,fmt='.0f',cmap="Blues",xticklabels =['negative','positive'],yticklabels =['negative','positive'])
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
-    plt.title('ResNet-18 confusion matrix')
-    plt.savefig('imgs/resnet18/cm.png',dpi=300)
+    plt.title('ResNet-14-bottleneck confusion matrix')
+    plt.savefig('imgs/resnet_14_bottleneck/cm.png',dpi=300)
     print('-----------------confusion matrix figure saved!-------------------')

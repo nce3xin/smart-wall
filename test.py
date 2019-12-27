@@ -15,7 +15,7 @@ from sklearn.metrics import roc_auc_score
 
 if __name__=='__main__':
     #model_path='ckps/weights-044-0.976.hdf5'
-    model_path='ckps/resnet18/weights-046-0.977.hdf5'
+    model_path='ckps/resnet_14_bottleneck/weights-041-0.979.hdf5'
     model=load_model(model_path)
 
     #model.summary()

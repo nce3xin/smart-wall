@@ -266,3 +266,23 @@ class ResnetBuilder(object):
     @staticmethod
     def build_resnet_152(input_shape, num_outputs):
         return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [3, 8, 36, 3])
+
+    @staticmethod
+    def build_resnet_14_bottleneck(input_shape, num_outputs):
+        return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [1, 1, 1, 1])
+
+    @staticmethod
+    def build_resnet_17_bottleneck(input_shape, num_outputs):
+        return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [1, 2, 1, 1])
+
+    @staticmethod
+    def build_resnet_20_bottleneck(input_shape, num_outputs):
+        return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [1, 2, 2, 1])
+    
+    @staticmethod
+    def build_resnet_23_bottleneck(input_shape, num_outputs):
+        return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [1, 2, 2, 2])
+
+    @staticmethod
+    def build_resnet_26_bottleneck(input_shape, num_outputs):
+        return ResnetBuilder.build(input_shape, num_outputs, bottleneck, [2, 2, 2, 2])
